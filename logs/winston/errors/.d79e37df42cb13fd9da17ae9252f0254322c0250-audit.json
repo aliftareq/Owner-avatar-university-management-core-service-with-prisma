@@ -24,6 +24,16 @@
             "date": 1719723626541,
             "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-30-06-11-error.log",
             "hash": "3f436a896559867b516c110bc5da4576462886641c003f461f2e73dfcb977af4"
+        },
+        {
+            "date": 1719739851964,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-30-06-15-error.log",
+            "hash": "e00660fd1b72e60e10d3282d86295d84973630813bd227eea83319ebc486c952"
+        },
+        {
+            "date": 1719741674467,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-30-06-16-error.log",
+            "hash": "1660b2dda5d58e74c07ce9cf1744cd4d380e86bdb6ccd36f424d3d6e3c2d1f22"
         }
     ],
     "hashType": "sha256"
