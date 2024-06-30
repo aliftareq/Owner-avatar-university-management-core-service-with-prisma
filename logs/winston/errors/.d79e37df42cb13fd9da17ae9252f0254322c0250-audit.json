@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\.d79e37df42cb13fd9da17ae9252f0254322c0250-audit.json",
+    "files": [
+        {
+            "date": 1719471110648,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-27-06-12-error.log",
+            "hash": "75bb5afccc6fffe1adeaf04b55d188e8beeebe3e867a53ce671f295a0584a30a"
+        },
+        {
+            "date": 1719716876649,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-30-06-09-error.log",
+            "hash": "0d3e8fdc7699b70cc5328b5da3660161329ec8e3492a776ecf09c054cf24202f"
+        },
+        {
+            "date": 1719720130694,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-30-06-10-error.log",
+            "hash": "d65129916ec2074b5169b53b0f3de72e2223996ee5b0f821a65bdeeba01784cd"
+        },
+        {
+            "date": 1719723626541,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-30-06-11-error.log",
+            "hash": "3f436a896559867b516c110bc5da4576462886641c003f461f2e73dfcb977af4"
+        }
+    ],
+    "hashType": "sha256"
+}
