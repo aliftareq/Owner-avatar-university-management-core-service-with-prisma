@@ -3,12 +3,20 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
-import { FacultySearchableFields } from './Faculty.constant';
+import {
+  facultyRelationalFields,
+  facultyRelationalFieldsMapper,
+  facultySearchableFields,
+} from './Faculty.constant';
 import { IFacultyFilterRequest } from './Faculty.interface';
 
 const insertIntoDB = async (data: Faculty): Promise<Faculty> => {
   const result = await prisma.faculty.create({
     data,
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
+    },
   });
 
   return result;
@@ -22,13 +30,13 @@ const getAllFromDB = async (
   const { searchTerm, ...filtersData } = filters;
 
   // console.log(filters, filtersData);
-  console.log(options);
+  // console.log(options);
 
   const andConditions = [];
 
   if (searchTerm) {
     andConditions.push({
-      OR: FacultySearchableFields.map(field => ({
+      OR: facultySearchableFields.map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',
@@ -39,12 +47,21 @@ const getAllFromDB = async (
 
   if (Object.keys(filtersData).length > 0) {
     andConditions.push({
-      AND: Object.keys(filtersData).map(key => ({
-        [key]: {
-          equals: (filtersData as any)[key],
-          mode: 'insensitive',
-        },
-      })),
+      AND: Object.keys(filtersData).map(key => {
+        if (facultyRelationalFields.includes(key)) {
+          return {
+            [facultyRelationalFieldsMapper[key]]: {
+              id: (filtersData as any)[key],
+            },
+          };
+        } else {
+          return {
+            [key]: {
+              equals: (filtersData as any)[key],
+            },
+          };
+        }
+      }),
     });
   }
 
@@ -52,6 +69,10 @@ const getAllFromDB = async (
     andConditions.length > 0 ? { AND: andConditions } : {};
 
   const result = await prisma.faculty.findMany({
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
+    },
     where: whereCondition,
     skip,
     take: limit,
@@ -63,7 +84,9 @@ const getAllFromDB = async (
         : { createdAt: 'desc' },
   });
 
-  const total = await prisma.faculty.count();
+  const total = await prisma.faculty.count({
+    where: whereCondition,
+  });
 
   return {
     meta: {
@@ -79,6 +102,10 @@ const getDataById = async (id: string): Promise<Faculty | null> => {
   const result = await prisma.faculty.findUnique({
     where: {
       id,
+    },
+    include: {
+      academicFaculty: true,
+      academicDepartment: true,
     },
   });
 

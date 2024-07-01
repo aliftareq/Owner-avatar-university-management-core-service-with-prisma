@@ -98,7 +98,7 @@ model Faculty {
   academicDepartment  AcademicDepartment @relation(fields: [acdemicDepartmentId], references: [id])
   acdemicDepartmentId String
 
-  acdemicFaculty    AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
+  academicFaculty   AcademicFaculty @relation(fields: [academicFacultyId], references: [id])
   academicFacultyId String
 
   @@map("faculties")

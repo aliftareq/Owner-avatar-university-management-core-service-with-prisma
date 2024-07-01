@@ -3,12 +3,21 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
-import { StudentSearchableFields } from './student.constant';
+import {
+  studentRelationalFields,
+  studentRelationalFieldsMapper,
+  studentSearchableFields,
+} from './student.constant';
 import { IStudentFilterRequest } from './student.interface';
 
 const insertIntoDB = async (data: Student): Promise<Student> => {
   const result = await prisma.student.create({
     data,
+    include: {
+      AcademicFaculty: true,
+      academicDepartment: true,
+      academicSemester: true,
+    },
   });
 
   return result;
@@ -28,7 +37,7 @@ const getAllFromDB = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: StudentSearchableFields.map(field => ({
+      OR: studentSearchableFields.map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',
@@ -39,12 +48,21 @@ const getAllFromDB = async (
 
   if (Object.keys(filtersData).length > 0) {
     andConditions.push({
-      AND: Object.keys(filtersData).map(key => ({
-        [key]: {
-          equals: (filtersData as any)[key],
-          mode: 'insensitive',
-        },
-      })),
+      AND: Object.keys(filtersData).map(key => {
+        if (studentRelationalFields.includes(key)) {
+          return {
+            [studentRelationalFieldsMapper[key]]: {
+              id: (filtersData as any)[key],
+            },
+          };
+        } else {
+          return {
+            [key]: {
+              equals: (filtersData as any)[key],
+            },
+          };
+        }
+      }),
     });
   }
 
@@ -52,6 +70,11 @@ const getAllFromDB = async (
     andConditions.length > 0 ? { AND: andConditions } : {};
 
   const result = await prisma.student.findMany({
+    include: {
+      AcademicFaculty: true,
+      academicDepartment: true,
+      academicSemester: true,
+    },
     where: whereCondition,
     skip,
     take: limit,
@@ -63,7 +86,9 @@ const getAllFromDB = async (
         : { createdAt: 'desc' },
   });
 
-  const total = await prisma.student.count();
+  const total = await prisma.student.count({
+    where: whereCondition,
+  });
 
   return {
     meta: {
@@ -79,6 +104,11 @@ const getDataById = async (id: string): Promise<Student | null> => {
   const result = await prisma.student.findUnique({
     where: {
       id,
+    },
+    include: {
+      AcademicFaculty: true,
+      academicDepartment: true,
+      academicSemester: true,
     },
   });
 

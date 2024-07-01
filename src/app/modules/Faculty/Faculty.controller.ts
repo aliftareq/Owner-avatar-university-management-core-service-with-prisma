@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
-import { FacultyFilterableFields } from './Faculty.constant';
+import { facultyFilterableFields } from './Faculty.constant';
 import { FacultyService } from './Faculty.service';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
@@ -18,7 +18,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, FacultyFilterableFields);
+  const filters = pick(req.query, facultyFilterableFields);
   const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
 
   // console.log('filters', filters);
@@ -28,7 +28,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty data fetched successfully',
+    message: 'Faculties data fetched successfully',
     meta: result.meta,
     data: result.data,
   });
