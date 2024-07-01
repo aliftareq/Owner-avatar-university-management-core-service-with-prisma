@@ -3,7 +3,7 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
-import { AcademicFacultySearchableFields } from './academicFaculty.constant';
+import { academicFacultySearchableFields } from './academicFaculty.constant';
 import { IAcademicFacultyFilterRequest } from './academicFaculty.interface';
 
 const insertIntoDB = async (
@@ -30,7 +30,7 @@ const getAllFromDB = async (
 
   if (searchTerm) {
     andConditions.push({
-      OR: AcademicFacultySearchableFields.map(field => ({
+      OR: academicFacultySearchableFields.map(field => ({
         [field]: {
           contains: searchTerm,
           mode: 'insensitive',
@@ -65,7 +65,9 @@ const getAllFromDB = async (
         : { createdAt: 'desc' },
   });
 
-  const total = await prisma.academicFaculty.count();
+  const total = await prisma.academicFaculty.count({
+    where: whereCondition,
+  });
 
   return {
     meta: {
@@ -78,7 +80,7 @@ const getAllFromDB = async (
 };
 
 const getDataById = async (id: string): Promise<AcademicFaculty | null> => {
-  const result = await prisma.academicSemester.findUnique({
+  const result = await prisma.academicFaculty.findUnique({
     where: {
       id,
     },

@@ -1,3 +1,3 @@
-export const AcademicFacultySearchableFields = ['title'];
+export const academicFacultyFilterableFields: string[] = ['searchTerm', 'id'];
 
-export const AcademicFacultyFilterableFields = ['searchTerm'];
+export const academicFacultySearchableFields: string[] = ['title'];

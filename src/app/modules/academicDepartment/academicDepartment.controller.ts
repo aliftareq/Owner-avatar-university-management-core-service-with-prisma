@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
-import { AcademicDepartmentFilterableFields } from './academicDepartment.constant';
+import { academicDepartmentFilterableFields } from './academicDepartment.constant';
 import { AcademicDepartmentService } from './academicDepartment.service';
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
@@ -18,7 +18,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, AcademicDepartmentFilterableFields);
+  const filters = pick(req.query, academicDepartmentFilterableFields);
   const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
 
   // console.log('filters', filters);
