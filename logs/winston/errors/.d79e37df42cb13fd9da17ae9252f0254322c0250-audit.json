@@ -94,6 +94,11 @@
             "date": 1719882516214,
             "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-02-07-07-error.log",
             "hash": "741920d4aea71794efcfa8400ef48390023bb74820115560d8ea8f94a981e07c"
+        },
+        {
+            "date": 1719885832333,
+            "name": "E:\\Code learning files\\1.1 appollo-level-2 course\\11.Be_SQL_superstar\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-02-07-08-error.log",
+            "hash": "9668ac47f037215c7b3db2d0f72a0140ddbdcfcf20c25c83dac84e37ca1d2723"
         }
     ],
     "hashType": "sha256"
