@@ -20,4 +20,15 @@ router.patch(
 );
 router.delete('/:id', CourseController.deleteByIdFromDB);
 
+router.post(
+  '/:id/assign-faculties',
+  validateRequest(CourseValidation.assignOrRemoveFaculty),
+  CourseController.assignFaculties
+);
+router.delete(
+  '/:id/remove-faculties',
+  validateRequest(CourseValidation.assignOrRemoveFaculty),
+  CourseController.removeFaculties
+);
+
 export const CourseRoutes = router;
