@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Prisma } from '@prisma/client';
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
-import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
-import handleClientError from '../../errors/handleClientError';
 import handleValidationError from '../../errors/handleValidationError';
+
+import { Prisma } from '@prisma/client';
+import { ZodError } from 'zod';
+import handleClientError from '../../errors/handleClientError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';

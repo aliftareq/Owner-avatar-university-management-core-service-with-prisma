@@ -176,9 +176,9 @@ model SemesterRegistration {
   updatedAt          DateTime                    @updatedAt
   academicSemesterId String
 
-  academicSemester       AcademicSemester        @relation(fields: [academicSemesterId], references: [id])
-  offeredCourses         OfferedCourse[]
-  offeredCoursesSections OfferedCoursesSection[]
+  academicSemester      AcademicSemester       @relation(fields: [academicSemesterId], references: [id])
+  offeredCourses        OfferedCourse[]
+  offeredCourseSections OfferedCourseSection[]
 
   @@map("semester_registrations")
 }
@@ -188,29 +188,27 @@ model OfferedCourse {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
 
-  course               Course @relation(fields: [courseId], references: [id])
   academicDepartmentId String
-
-  academicDepartment AcademicDepartment @relation(fields: [academicDepartmentId], references: [id])
+  academicDepartment   AcademicDepartment @relation(fields: [academicDepartmentId], references: [id])
 
   semesterRegistrationId String
-  semesterRegistration   SemesterRegistration    @relation(fields: [semesterRegistrationId], references: [id])
-  offeredCoursesSections OfferedCoursesSection[]
+  semesterRegistration   SemesterRegistration   @relation(fields: [semesterRegistrationId], references: [id])
+  offeredCourseSections  OfferedCourseSection[]
 
   @@map("offered_courses")
 }
 
-model OfferedCoursesSection {
-  id                       String   @id @default(uuid())
+model OfferedCourseSection {
+  id                       String        @id @default(uuid())
   title                    String
   maxCapacity              Int
-  currentlyEnrolledStudent Int      @default(0)
-  createdAt                DateTime @default(now())
-  updatedAt                DateTime @updatedAt
-
-  offeredCourseId String
-  offeredCourse   OfferedCourse @relation(fields: [offeredCourseId], references: [id])
+  currentlyEnrolledStudent Int           @default(0)
+  createdAt                DateTime      @default(now())
+  updatedAt                DateTime      @updatedAt
+  offeredCourseId          String
+  offeredCourse            OfferedCourse @relation(fields: [offeredCourseId], references: [id])
 
   semesterRegistrationId String
   semesterRegistration   SemesterRegistration @relation(fields: [semesterRegistrationId], references: [id])

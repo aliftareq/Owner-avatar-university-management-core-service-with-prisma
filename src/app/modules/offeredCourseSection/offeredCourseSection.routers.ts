@@ -1,8 +1,25 @@
 import express from 'express';
-import { OfferedCoursesSectionController } from './offeredCourseSection.controller';
+import validateRequest from '../../middlewares/validateRequest';
+import { OfferedCourseSectionController } from './offeredCourseSection.controller';
+import { OfferedCourseSectionValidation } from './offeredCourseSection.validation';
 
-const route = express.Router();
+const router = express.Router();
 
-route.post('/', OfferedCoursesSectionController.insertIntoDB);
+router.get('/', OfferedCourseSectionController.getAllFromDB);
+router.get('/:id', OfferedCourseSectionController.getByIdFromDB);
 
-export const OfferedCoursesSectionRoutes = route;
+router.post(
+  '/',
+  validateRequest(OfferedCourseSectionValidation.create),
+  OfferedCourseSectionController.insertIntoDB
+);
+
+router.patch(
+  '/:id',
+  validateRequest(OfferedCourseSectionValidation.update),
+  OfferedCourseSectionController.updateOneInDB
+);
+
+router.delete('/:id', OfferedCourseSectionController.deleteByIdFromDB);
+
+export const offeredCourseSectionRoutes = router;
