@@ -3,13 +3,13 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
-import { OfferedCourseClassScheduleUtils } from './fferedCourseClassSchedule.utils';
 import {
   offeredCourseClassScheduleRelationalFields,
   offeredCourseClassScheduleRelationalFieldsMapper,
   offeredCourseClassScheduleSearchableFields,
 } from './offeredCourseClassSchedule.constants';
 import { IOfferedCourseClassScheduleFilterRequiest } from './offeredCourseClassSchedule.interface';
+import { OfferedCourseClassScheduleUtils } from './offeredCourseClassSchedule.utils';
 
 const insertIntoDB = async (
   data: OfferedCourseClassSchedule

@@ -33,7 +33,7 @@ const checkRoomAvailable = async (data: OfferedCourseClassSchedule) => {
 };
 
 const checkFacultyAvailable = async (data: OfferedCourseClassSchedule) => {
-  const alreadyFcultyAssigned =
+  const alreadyFacultyAssigned =
     await prisma.offeredCourseClassSchedule.findMany({
       where: {
         dayOfWeek: data.dayOfWeek,
@@ -43,7 +43,7 @@ const checkFacultyAvailable = async (data: OfferedCourseClassSchedule) => {
       },
     });
 
-  const existingSlots = alreadyFcultyAssigned.map(schedule => ({
+  const existingSlots = alreadyFacultyAssigned.map(schedule => ({
     startTime: schedule.startTime,
     endTime: schedule.endTime,
     dayOfWeek: schedule.dayOfWeek,
