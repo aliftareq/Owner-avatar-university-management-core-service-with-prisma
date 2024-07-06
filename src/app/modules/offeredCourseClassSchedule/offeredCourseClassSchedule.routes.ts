@@ -19,4 +19,6 @@ router.patch(
   OfferedCourseClassScheduleController.updateOneInDB
 );
 
+router.delete('/:id', OfferedCourseClassScheduleController.deleteByIdFromDB);
+
 export const offeredCourseClassScheduleRoutes = router;
