@@ -29,4 +29,16 @@ router.patch(
 
 router.delete('/:id', SemesterRegistrationController.deleteByIdFromDB);
 
+router.post(
+  '/enroll-into-course',
+  validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
+  SemesterRegistrationController.enrollIntoCourse
+);
+
+router.post(
+  '/withdraw-from-course',
+  validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
+  SemesterRegistrationController.withdrawFromCourse
+);
+
 export const semesterRegistrationRoutes = router;
