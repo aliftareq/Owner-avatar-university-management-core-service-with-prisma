@@ -41,4 +41,9 @@ router.post(
   SemesterRegistrationController.withdrawFromCourse
 );
 
+router.post(
+  '/confirm-my-registration',
+  SemesterRegistrationController.confirmMyRegistration
+);
+
 export const semesterRegistrationRoutes = router;
